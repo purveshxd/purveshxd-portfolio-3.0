@@ -68,7 +68,7 @@ class _MouseFollowerState extends AnimatedWidgetBaseState<MouseFollower> {
             constrains.maxHeight,
           ),
           painter: MouseFollowerPaint(
-            radius: 300,
+            radius: 100,
             position: _positionTween.evaluate(animation),
           ),
           child: widget.child,
@@ -105,8 +105,8 @@ class MouseFollowerPaint extends CustomPainter {
       position,
       radius,
       Paint()
-        ..color = Colors.indigoAccent.withOpacity(.1)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 80),
+        ..color = Colors.indigoAccent.shade700.withAlpha(255)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 250),
     );
   }
 

@@ -24,6 +24,7 @@ class SocialComponent extends StatelessWidget {
                   builder: (context, value, child) {
                     return FocusableActionDetector(
                       child: Icon(
+                        size: 55,
                         Icons.circle,
                         color: selectedIndex == i
                             ? value

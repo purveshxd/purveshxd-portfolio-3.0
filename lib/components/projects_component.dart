@@ -1,0 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:purveshxdev/screens/all_project_screen.dart';
+import 'package:purveshxdev/widgets/project_tile.dart';
+
+import '../widgets/section_heading_widget.dart';
+
+class ProjectsComponent extends StatelessWidget {
+  const ProjectsComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    ValueNotifier isHovering = ValueNotifier(false);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SectionHeadingWidget(
+          sectionHeadingLabel: "Projects",
+        ),
+        Column(
+          children: [for (var i = 0; i < 3; i++) ProjectTile(i: i)],
+        ),
+        const SizedBox(height: 15),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const AllProjectScreen(),
+                ));
+          },
+          child: FocusableActionDetector(
+            onShowHoverHighlight: (value) {
+              isHovering.value = value;
+            },
+            child: ValueListenableBuilder(
+                valueListenable: isHovering,
+                builder: (context, value, child) {
+                  return Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          const Text(
+                            "View Full Projects",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                decorationStyle: TextDecorationStyle.dotted),
+                          ),
+                          AnimatedContainer(
+                            duration: Durations.short4,
+                            width: isHovering.value ? 15 : 0,
+                          ),
+                          const Icon(Icons.arrow_forward_rounded)
+                        ],
+                      ),
+                      const SizedBox(height: 4),
+                      AnimatedContainer(
+                        duration: Durations.short4,
+                        curve: Curves.easeOutBack,
+                        height: 2,
+                        width: 160,
+                        color: isHovering.value
+                            ? Colors.tealAccent
+                            : Colors.transparent,
+                      )
+                    ],
+                  );
+                }),
+          ),
+        )
+      ],
+    );
+  }
+}
