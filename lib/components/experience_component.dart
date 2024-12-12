@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/widgets/experience_tile.dart';
 import 'package:purveshxdev/widgets/section_heading_widget.dart';
 
 class ExperienceComponent extends StatelessWidget {
@@ -14,13 +15,7 @@ class ExperienceComponent extends StatelessWidget {
         ),
         Column(
           children: [
-            for (var i = 0; i <= 6; i++)
-              Container(
-                margin: const EdgeInsets.all(8),
-                color: Colors.white,
-                width: double.infinity,
-                height: 200,
-              )
+            for (var i = 0; i < 3; i++) ExperienceTile(i: i),
           ],
         ),
       ],

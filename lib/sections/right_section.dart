@@ -16,11 +16,7 @@ class RightSection extends StatefulWidget {
 }
 
 class _RightSectionState extends State<RightSection> {
-  List<String> sectionList = [
-    "About",
-    "Projects",
-    "Experience",
-  ];
+  List<String> sectionList = ["About", "Projects", "Experience", "Resume"];
 
   int selectedIndex = 0;
 
@@ -60,7 +56,7 @@ class _RightSectionState extends State<RightSection> {
               style: TextStyle(color: Colors.white54, fontSize: 16),
             ),
             const Spacer(),
-            for (var i = 0; i < 3; i++)
+            for (var i = 0; i < sectionList.length; i++)
               ProfileButtons(
                 index: i,
                 onTap: () {
@@ -78,7 +74,6 @@ class _RightSectionState extends State<RightSection> {
               ),
             const Spacer(),
             const SocialComponent(),
-            
           ],
         ),
       ),
