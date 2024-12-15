@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SocialComponent extends StatelessWidget {
   const SocialComponent({super.key});
@@ -10,37 +11,47 @@ class SocialComponent extends StatelessWidget {
     ValueNotifier isHovering = ValueNotifier(false);
     int? selectedIndex;
 
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Row(
-        children: [
-          for (var i = 0; i < 5; i++)
-            GestureDetector(
+    List<IconData> iconsList = [
+      FontAwesomeIcons.github,
+      FontAwesomeIcons.linkedin,
+      FontAwesomeIcons.instagram,
+      FontAwesomeIcons.link,
+    ];
+
+    return Row(
+      children: [
+        for (var i = 0; i < iconsList.length; i++)
+          Padding(
+            padding: const EdgeInsets.all(18.0).copyWith(right: 0),
+            child: GestureDetector(
               onTap: () {
                 log("Tapped");
               },
               child: ValueListenableBuilder(
                   valueListenable: isHovering,
                   builder: (context, value, child) {
-                    return FocusableActionDetector(
-                      child: Icon(
-                        size: 55,
-                        Icons.circle,
-                        color: selectedIndex == i
-                            ? value
-                                ? Colors.white
-                                : Colors.grey
-                            : Colors.grey,
+                    return Tooltip(
+                      message: "github",
+                      child: FocusableActionDetector(
+                        onShowFocusHighlight: (value) {},
+                        child: Icon(
+                          iconsList[i],
+                          color: selectedIndex == i
+                              ? value
+                                  ? Colors.white
+                                  : Colors.grey
+                              : Colors.grey,
+                        ),
+                        onShowHoverHighlight: (value) {
+                          isHovering.value = value;
+                          selectedIndex = i;
+                        },
                       ),
-                      onShowHoverHighlight: (value) {
-                        isHovering.value = value;
-                        selectedIndex = i;
-                      },
                     );
                   }),
-            )
-        ],
-      ),
+            ),
+          )
+      ],
     );
   }
 }

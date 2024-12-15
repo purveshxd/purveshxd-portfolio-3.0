@@ -2,35 +2,12 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
+import 'package:purveshxdev/main.dart';
 
-class ResumeComponent extends StatefulWidget {
+class ResumeComponent extends StatelessWidget {
   const ResumeComponent({super.key});
 
-  @override
-  State<ResumeComponent> createState() => _ResumeComponentState();
-}
-
-class _ResumeComponentState extends State<ResumeComponent> {
-  PdfController? controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadPdf();
-  }
-
-  Future<void> _loadPdf() async {
-    try {
-      setState(() {
-        controller = PdfController(
-          document: PdfDocument.openAsset("purveshxd-resume.pdf"),
-        );
-      });
-    } catch (e) {
-      log("Error loading PDF: $e");
-    }
-  }
-
+  // PdfController? controller;
   @override
   Widget build(BuildContext context) {
     if (controller == null) {
@@ -40,23 +17,27 @@ class _ResumeComponentState extends State<ResumeComponent> {
     }
 
     return SizedBox(
-      width: 300,
       height: MediaQuery.sizeOf(context).height,
-      child: PdfView(
-        renderer: (PdfPage page) => page.render(
-          width: MediaQuery.sizeOf(context).width * 2,
-          height: MediaQuery.sizeOf(context).height * 2,
-          format: PdfPageImageFormat.png,
-          backgroundColor: '#FFFFFF',
+      child: Padding(
+        padding: const EdgeInsets.only(top: 30, bottom: 30),
+        child: PdfView(
+          renderer: (PdfPage page) => page.render(
+            quality: 100,
+            width: MediaQuery.sizeOf(context).width * 2,
+            height: MediaQuery.sizeOf(context).height * 2,
+            format: PdfPageImageFormat.png,
+            forPrint: true,
+          ),
+          controller: controller!,
+          onDocumentLoaded: (document) {
+            log("PDF loaded with ${document.pagesCount} pages.");
+          },
         ),
-        controller: controller!,
-        onDocumentLoaded: (document) {
-          log("PDF loaded with ${document.pagesCount} pages.");
-        },
       ),
     );
   }
 }
+
 
 // class GetDocument {
 //   final url = Uri.parse(
