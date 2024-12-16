@@ -47,7 +47,18 @@ class Homepage extends StatelessWidget {
                     case 2:
                       return const ExperienceComponent();
                     case 3:
-                      return const ResumeComponent();
+                      return const Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          ResumeComponent(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Made in flutter with love ❤️"),
+                            ],
+                          )
+                        ],
+                      );
                     default:
                       return const AboutComponent();
                   }
