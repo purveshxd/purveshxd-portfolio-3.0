@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/firebase_options.dart';
-import 'package:purveshxdev/homepage.dart';
+import 'package:purveshxdev/screens/project_edit_screen.dart';
 
 PdfController? controller;
 
@@ -52,7 +52,9 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primarySwatch: Colors.indigo,
       ),
-      home: Homepage(),
+      home: ProjectEditScreen(),
+      // initialRoute: RouteName.HOMEPAGE,
+      // routes: Routes().webRoutes,
     );
   }
 }

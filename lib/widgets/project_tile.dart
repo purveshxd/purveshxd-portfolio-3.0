@@ -1,6 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:purveshxdev/screens/project_detail_screen.dart';
+import 'package:purveshxdev/utils/routes.dart';
 
 class ProjectTile extends StatefulWidget {
   final int i;
@@ -19,13 +19,8 @@ class _ProjectTileState extends State<ProjectTile> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => ProjectDetailScreen(
-                projectName: "Project Name ${widget.i}",
-              ),
-            ));
+        // go to project details page
+        Navigator.pushNamed(context, RouteName.PROJECT_DETAILS);
       },
       child: FocusableActionDetector(
         onShowHoverHighlight: (value) {

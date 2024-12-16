@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/models/arguments_model.dart';
 import 'package:purveshxdev/style/style.dart';
 import 'package:purveshxdev/utils/background.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
-  final String projectName;
-  const ProjectDetailScreen({super.key, required this.projectName});
+  // final String projectName;
+  const ProjectDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    List<String> columnName = [
-      "Year",
-      "Project",
-      "Made at	",
-      "Built with",
-      "Link"
-    ];
+    final args = ModalRoute.of(context)!.settings.arguments as ArgumentsModel;
+
+    final projectName = args.data as String;
+    // List<String> columnName = [
+    //   "Year",
+    //   "Project",
+    //   "Made at	",
+    //   "Built with",
+    //   "Link"
+    // ];
     ValueNotifier isHovering = ValueNotifier(false);
-    const int projectListLength = 8;
-    const int noOfColumns = 5;
+    // const int projectListLength = 8;
+    // const int noOfColumns = 5;
     return Background(
       childWidget: Padding(
         padding: const EdgeInsets.all(45.0),

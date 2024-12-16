@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:purveshxdev/providers/firebase_provider.dart';
+import 'package:purveshxdev/screens/project_edit_screen.dart';
 
 class AdminLoginScreen extends StatefulWidget {
   const AdminLoginScreen({super.key});
@@ -38,38 +39,38 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                 controller: passController,
               ),
               const SizedBox(height: 10),
-              FilledButton.tonal(
-                onPressed: () async {
-                  setState(() {
-                    isLoading = true;
-                  });
-                  bool isCorrect = await FirebaseProvider().login(
-                      username: userNameController.text.trim(),
-                      password: passController.text.trim());
-                  setState(() {
-                    if (isCorrect) {
-                      loggedIn = true;
-                    } else {
-                      loggedIn = false;
-                    }
-                  });
-                  if (context.mounted) {
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const Scaffold();
-                        },
-                      ),
-                      (route) => isCorrect,
-                    );
-                  }
-                  setState(() {
-                    isLoading = false;
-                  });
-                },
-                child: isLoading ? CircularProgressIndicator() : Text("Login"),
-              )
+              isLoading
+                  ? const CircularProgressIndicator()
+                  : FilledButton.tonal(
+                      onPressed: () async {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        bool isCorrect = await FirebaseProvider().login(
+                            username: userNameController.text.trim(),
+                            password: passController.text.trim());
+                        setState(() {
+                          if (isCorrect) {
+                            loggedIn = true;
+                          } else {
+                            loggedIn = false;
+                          }
+                        });
+                        if (context.mounted) {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    const ProjectEditScreen()),
+                            (route) => isCorrect,
+                          );
+                        }
+                        setState(() {
+                          isLoading = false;
+                        });
+                      },
+                      child: const Text("Login"),
+                    )
             ],
           ),
         )),
