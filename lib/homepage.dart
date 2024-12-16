@@ -54,7 +54,12 @@ class Homepage extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Made in flutter with love ❤️"),
+                              Text("Made in "),
+                              FlutterLogo(
+                                style: FlutterLogoStyle.horizontal,
+                                size: 50,
+                              ),
+                              Text(" with love ❤️"),
                             ],
                           )
                         ],
