@@ -1,8 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:purveshxdev/components/about_component.dart';
 import 'package:purveshxdev/components/experience_component.dart';
 import 'package:purveshxdev/components/projects_component.dart';
 import 'package:purveshxdev/components/resume_component.dart';
+import 'package:purveshxdev/screens/admin_login_screen.dart';
 import 'package:purveshxdev/sections/right_section.dart';
 import 'package:purveshxdev/utils/background.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -47,19 +50,30 @@ class Homepage extends StatelessWidget {
                     case 2:
                       return const ExperienceComponent();
                     case 3:
-                      return const Column(
+                      return Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          ResumeComponent(),
+                          const ResumeComponent(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text("Made in "),
-                              FlutterLogo(
-                                style: FlutterLogoStyle.horizontal,
-                                size: 50,
+                              const Text("Made in "),
+                              GestureDetector(
+                                onDoubleTap: () {
+                                  log("Double tapped");
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AdminLoginScreen(),
+                                      ));
+                                },
+                                child: const FlutterLogo(
+                                  style: FlutterLogoStyle.horizontal,
+                                  size: 50,
+                                ),
                               ),
-                              Text(" with love ❤️"),
+                              const Text(" with love ❤️"),
                             ],
                           )
                         ],

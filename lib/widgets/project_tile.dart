@@ -78,6 +78,7 @@ class _ProjectTileState extends State<ProjectTile> {
               Flexible(
                 flex: 3,
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
@@ -118,9 +119,7 @@ class _ProjectTileState extends State<ProjectTile> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                          maxWidth: MediaQuery.sizeOf(context).width / 3),
+                    Flexible(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.start,
                         runSpacing: 8,

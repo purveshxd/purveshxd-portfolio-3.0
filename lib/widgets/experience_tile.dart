@@ -116,9 +116,7 @@ class _ExperienceTileState extends State<ExperienceTile> {
                       ],
                     ),
                     const SizedBox(height: 12),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                          maxWidth: MediaQuery.sizeOf(context).width / 3),
+                    Flexible(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.start,
                         runSpacing: 8,
