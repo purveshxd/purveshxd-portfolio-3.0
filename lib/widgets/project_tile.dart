@@ -26,7 +26,7 @@ class _ProjectTileState extends State<ProjectTile> {
         // go to project details page
 
         Navigator.pushNamed(context, RouteName.PROJECT_DETAILS,
-            arguments: ArgumentsModel(data: widget.project.name));
+            arguments: ArgumentsModel(data: widget.project));
       },
       child: FocusableActionDetector(
         onShowHoverHighlight: (value) {
@@ -65,8 +65,7 @@ class _ProjectTileState extends State<ProjectTile> {
                 child: Container(
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(
-                    borderRadius:
-                        const BorderRadius.all(const Radius.circular(8)),
+                    borderRadius: const BorderRadius.all(Radius.circular(8)),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,

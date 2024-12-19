@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:purveshxdev/models/arguments_model.dart';
+import 'package:purveshxdev/models/user_model.dart';
+import 'package:purveshxdev/providers/github_provider.dart';
 import 'package:purveshxdev/style/style.dart';
 import 'package:purveshxdev/utils/background.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ProjectDetailScreen extends StatelessWidget {
   // final String projectName;
@@ -11,7 +15,7 @@ class ProjectDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as ArgumentsModel;
 
-    final projectName = args.data as String;
+    final project = args.data as Project;
     // List<String> columnName = [
     //   "Year",
     //   "Project",
@@ -71,15 +75,36 @@ class ProjectDetailScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               Text(
-                projectName,
+                project.name,
                 style: Style.headingTextStyle,
               ),
               const SizedBox(height: 40),
               ConstrainedBox(
                   constraints: BoxConstraints(
                       minWidth: MediaQuery.sizeOf(context).width),
-                  child: const Center(
-                    child: Text("Project Details coming soon..."),
+                  child: Center(
+                    child: FutureBuilder(
+                        future: GithubRepo()
+                            .getRepos(project.githubLink.split('/').last),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Markdown(
+                              data: snapshot.data!,
+                              shrinkWrap: true,
+                              onTapLink: (text, href, title) => launchUrl(
+                                  Uri.parse(href!),
+                                  webOnlyWindowName: "_blank"),
+                            );
+                          } else if (snapshot.hasError) {
+                            return Center(
+                              child: Text(snapshot.error.toString()),
+                            );
+                          } else {
+                            return const Center(
+                              child: CircularProgressIndicator(),
+                            );
+                          }
+                        }),
                   ))
             ],
           ),
