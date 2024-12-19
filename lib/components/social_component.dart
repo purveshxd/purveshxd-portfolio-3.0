@@ -2,42 +2,54 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:purveshxdev/models/user_model.dart';
 
 class SocialComponent extends StatelessWidget {
   const SocialComponent({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ValueNotifier isHovering = ValueNotifier(false);
-    int? selectedIndex;
-
-    List<IconData> iconsList = [
-      FontAwesomeIcons.github,
-      FontAwesomeIcons.linkedin,
-      FontAwesomeIcons.instagram,
-      FontAwesomeIcons.link,
+    List<Social> socialList = [
+      Social(
+          link: "www.github.com/purveshxd",
+          icon: FontAwesomeIcons.github,
+          name: "Github"),
+      Social(
+          name: "Linkedin",
+          link: "www.linkedin.com/in/purveshxd",
+          icon: FontAwesomeIcons.linkedin),
+      Social(
+          name: "Twitter/X",
+          icon: FontAwesomeIcons.xTwitter,
+          link: "www.twitter.com/xdpurvesh"),
+      Social(
+          link: "www.linktr.ee/purveshxd",
+          icon: FontAwesomeIcons.link,
+          name: "Other links")
     ];
 
+    ValueNotifier isHovering = ValueNotifier(false);
+
+    int? selectedIndex;
     return Row(
       children: [
-        for (var i = 0; i < iconsList.length; i++)
+        for (var i = 0; i < socialList.length; i++)
           Padding(
             padding: const EdgeInsets.all(18.0).copyWith(right: 0),
-            child: GestureDetector(
-              onTap: () {
-                log("Tapped");
-              },
-              child: ValueListenableBuilder(
-                  valueListenable: isHovering,
-                  builder: (context, value, child) {
-                    return Tooltip(
-                      message: "github",
+            child: ValueListenableBuilder(
+                valueListenable: isHovering,
+                builder: (context, value, child) {
+                  return GestureDetector(
+                    onTap: () {
+                      log("Tapped");
+                    },
+                    child: Tooltip(
+                      message: socialList[i].name,
                       child: FocusableActionDetector(
-                        onShowFocusHighlight: (value) {},
                         child: Icon(
-                          iconsList[i],
+                          socialList[i].icon,
                           color: selectedIndex == i
-                              ? value
+                              ? isHovering.value
                                   ? Colors.white
                                   : Colors.grey
                               : Colors.grey,
@@ -47,9 +59,9 @@ class SocialComponent extends StatelessWidget {
                           selectedIndex = i;
                         },
                       ),
-                    );
-                  }),
-            ),
+                    ),
+                  );
+                }),
           )
       ],
     );

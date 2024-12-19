@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:purveshxdev/homepage.dart';
 import 'package:purveshxdev/screens/admin_login_screen.dart';
 import 'package:purveshxdev/screens/all_project_screen.dart';

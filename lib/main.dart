@@ -5,42 +5,30 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/firebase_options.dart';
-import 'package:purveshxdev/screens/project_edit_screen.dart';
+import 'package:purveshxdev/providers/firebase_provider.dart';
+import 'package:purveshxdev/utils/routes.dart';
 
 PdfController? controller;
+final firebaseProvider = FirebaseProvider();
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  await firebaseProvider.getData();
+
+  try {
+    controller = PdfController(
+      document: PdfDocument.openAsset("purveshxd-resume.pdf"),
+    );
+  } catch (e) {
+    log("Error loading PDF: $e");
+  }
+
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  //loads the pdf
-  Future<void> _loadPdf() async {
-    try {
-      setState(() {
-        controller = PdfController(
-          document: PdfDocument.openAsset("purveshxd-resume.pdf"),
-        );
-      });
-    } catch (e) {
-      log("Error loading PDF: $e");
-    }
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _loadPdf();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +40,9 @@ class _MyAppState extends State<MyApp> {
         brightness: Brightness.dark,
         primarySwatch: Colors.indigo,
       ),
-      home: ProjectEditScreen(),
-      // initialRoute: RouteName.HOMEPAGE,
-      // routes: Routes().webRoutes,
+      // home: ProjectEditScreen(),
+      initialRoute: RouteName.HOMEPAGE,
+      routes: Routes().webRoutes,
     );
   }
 }

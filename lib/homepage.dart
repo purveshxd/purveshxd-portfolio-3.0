@@ -79,7 +79,7 @@ class Homepage extends StatelessWidget {
                         ],
                       );
                     default:
-                      return const AboutComponent();
+                      return const SizedBox();
                   }
                 },
               ),

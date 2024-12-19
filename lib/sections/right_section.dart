@@ -73,7 +73,7 @@ class _RightSectionState extends State<RightSection> {
                 sectionName: sectionList[i],
               ),
             const Spacer(),
-            const SocialComponent(),
+             SocialComponent(),
           ],
         ),
       ),

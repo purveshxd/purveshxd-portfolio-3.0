@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/main.dart';
+import 'package:purveshxdev/models/user_model.dart';
 import 'package:purveshxdev/screens/all_project_screen.dart';
 import 'package:purveshxdev/widgets/project_tile.dart';
 
@@ -9,6 +11,8 @@ class ProjectsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Project> projectsList = firebaseProvider.getProjects();
+    final projectLength = projectsList.length > 3 ? 3 : projectsList.length;
     ValueNotifier isHovering = ValueNotifier(false);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -17,7 +21,10 @@ class ProjectsComponent extends StatelessWidget {
           sectionHeadingLabel: "Projects",
         ),
         Column(
-          children: [for (var i = 0; i < 3; i++) ProjectTile(i: i)],
+          children: [
+            for (var i = 0; i < projectLength; i++)
+              ProjectTile(i: i, project: projectsList[i])
+          ],
         ),
         const SizedBox(height: 15),
         GestureDetector(

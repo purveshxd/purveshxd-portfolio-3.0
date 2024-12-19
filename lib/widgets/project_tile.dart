@@ -1,12 +1,16 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/models/arguments_model.dart';
+import 'package:purveshxdev/models/user_model.dart';
 import 'package:purveshxdev/utils/routes.dart';
 
 class ProjectTile extends StatefulWidget {
   final int i;
+  final Project project;
   const ProjectTile({
     super.key,
     required this.i,
+    required this.project,
   });
 
   @override
@@ -20,7 +24,9 @@ class _ProjectTileState extends State<ProjectTile> {
     return GestureDetector(
       onTap: () {
         // go to project details page
-        Navigator.pushNamed(context, RouteName.PROJECT_DETAILS);
+
+        Navigator.pushNamed(context, RouteName.PROJECT_DETAILS,
+            arguments: ArgumentsModel(data: widget.project.name));
       },
       child: FocusableActionDetector(
         onShowHoverHighlight: (value) {
@@ -58,13 +64,13 @@ class _ProjectTileState extends State<ProjectTile> {
                 flex: 1,
                 child: Container(
                   clipBehavior: Clip.hardEdge,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        const BorderRadius.all(const Radius.circular(8)),
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
-                      image: NetworkImage(
-                          "https://images.unsplash.com/photo-1490604001847-b712b0c2f967?q=80&w=1253&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
+                      image: NetworkImage(widget.project.thumbnailLink),
                     ),
                   ),
                 ),
@@ -79,7 +85,7 @@ class _ProjectTileState extends State<ProjectTile> {
                     Row(
                       children: [
                         Text(
-                          "Project Name here",
+                          widget.project.name,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -100,12 +106,12 @@ class _ProjectTileState extends State<ProjectTile> {
                         )
                       ],
                     ),
-                    const Row(
+                    Row(
                       children: [
                         Flexible(
                           child: Text(
-                            "Loosely designed in Figma and coded in Visual Studio Code by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel. All text is set in the Inter typeface.",
-                            style: TextStyle(
+                            widget.project.desc,
+                            style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
                                 color: Colors.white54),
@@ -120,21 +126,22 @@ class _ProjectTileState extends State<ProjectTile> {
                         runSpacing: 8,
                         spacing: 4,
                         children: [
-                          for (var i = 0; i < 5; i++)
-                            const Chip(
-                                padding: EdgeInsets.symmetric(horizontal: 2),
-                                shape: StadiumBorder(),
+                          for (var i = 0; i < widget.project.tags.length; i++)
+                            Chip(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 2),
+                                shape: const StadiumBorder(),
                                 elevation: 0,
                                 side: BorderSide.none,
                                 label: Text(
-                                  "Flutter",
-                                  style: TextStyle(
+                                  widget.project.tags[i],
+                                  style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.tealAccent,
                                       fontWeight: FontWeight.bold),
                                 ),
                                 backgroundColor:
-                                    Color.fromARGB(113, 47, 112, 132))
+                                    const Color.fromARGB(113, 47, 112, 132))
                         ],
                       ),
                     )

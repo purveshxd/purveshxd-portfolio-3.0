@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:purveshxdev/providers/firebase_provider.dart';
+import 'package:purveshxdev/main.dart';
 import 'package:purveshxdev/screens/project_edit_screen.dart';
 
 class AdminLoginScreen extends StatefulWidget {
@@ -46,7 +46,7 @@ class _AdminLoginScreenState extends State<AdminLoginScreen> {
                         setState(() {
                           isLoading = true;
                         });
-                        bool isCorrect = await FirebaseProvider().login(
+                        bool isCorrect = firebaseProvider.login(
                             username: userNameController.text.trim(),
                             password: passController.text.trim());
                         setState(() {
