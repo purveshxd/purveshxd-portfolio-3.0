@@ -69,7 +69,9 @@ class _ProjectTileState extends State<ProjectTile> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
-                      image: NetworkImage(widget.project.thumbnailLink),
+                      image: NetworkImage(widget.project.thumbnailLink.isEmpty
+                          ? "https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png"
+                          : widget.project.thumbnailLink),
                     ),
                   ),
                 ),

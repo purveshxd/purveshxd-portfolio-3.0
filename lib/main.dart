@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/firebase_options.dart';
+import 'package:purveshxdev/homepage.dart';
 import 'package:purveshxdev/providers/firebase_provider.dart';
 import 'package:purveshxdev/utils/routes.dart';
 
@@ -42,7 +43,10 @@ class MyApp extends StatelessWidget {
       ),
       // home: ProjectEditScreen(),
       initialRoute: RouteName.HOMEPAGE,
-      routes: Routes().webRoutes,
+      routes: Routes.webRoutes,
+      onGenerateInitialRoutes: (initialRoute) {
+        return [MaterialPageRoute(builder: (context) => Homepage())];
+      },
     );
   }
 }

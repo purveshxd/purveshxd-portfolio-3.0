@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:http/http.dart' as http;
 
 class GithubRepo {
@@ -8,10 +10,16 @@ class GithubRepo {
 
     final readmeRaw = resp.body.toString();
 
+    // actual file
+    // https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png
+
+    // link im getting
+    // https://github.com/purveshxd/thehabitapp/blob/main/media/add_habit.png
+
     final data = readmeRaw.replaceAll(
         'https://github.com/purveshxd/$repoName/blob/',
         'https://raw.githubusercontent.com/purveshxd/$repoName/');
-
+    log("data => ${data}");
     return data;
   }
 }
