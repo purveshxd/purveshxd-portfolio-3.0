@@ -127,7 +127,9 @@ class _ProjectTileState extends State<ProjectTile> {
                         runSpacing: 8,
                         spacing: 4,
                         children: [
-                          for (var i = 0; i < widget.project.tags.length; i++)
+                          for (var i = 0;
+                              i < widget.project.techTag.length;
+                              i++)
                             Chip(
                                 padding:
                                     const EdgeInsets.symmetric(horizontal: 2),
@@ -135,7 +137,7 @@ class _ProjectTileState extends State<ProjectTile> {
                                 elevation: 0,
                                 side: BorderSide.none,
                                 label: Text(
-                                  widget.project.tags[i],
+                                  widget.project.techTag[i],
                                   style: const TextStyle(
                                       fontSize: 12,
                                       color: Colors.tealAccent,

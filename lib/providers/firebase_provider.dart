@@ -17,7 +17,7 @@ class FirebaseProvider {
       final userModelData = UserModel.fromMap(temp!);
       _userModel = userModelData;
     } catch (e) {
-      log("error getting firebase data $e");
+      log("error getting firebase data ${e.toString()}", error: e);
       throw Exception(e);
     }
   }
@@ -27,8 +27,8 @@ class FirebaseProvider {
     try {
       var data = _userModel;
 
-      final usernameDb = data.username;
-      final passDb = data.pass;
+      final usernameDb = data.profile.username;
+      final passDb = data.profile.pass;
 
       if (usernameDb == username && passDb == password) {
         return true;
@@ -45,5 +45,9 @@ class FirebaseProvider {
     var projectData = _userModel.projects;
 
     return projectData;
+  }
+
+  uploadProject() async {
+    try {} catch (e) {}
   }
 }

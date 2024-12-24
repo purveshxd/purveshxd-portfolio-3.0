@@ -10,22 +10,17 @@ class SocialComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Social> socialList = [
-      Social(
-          link: "www.github.com/purveshxd",
-          icon: FontAwesomeIcons.github,
-          name: "Github"),
-      Social(
-          name: "Linkedin",
-          link: "www.linkedin.com/in/purveshxd",
-          icon: FontAwesomeIcons.linkedin),
-      Social(
-          name: "Twitter/X",
-          icon: FontAwesomeIcons.xTwitter,
-          link: "www.twitter.com/xdpurvesh"),
-      Social(
-          link: "www.linktr.ee/purveshxd",
-          icon: FontAwesomeIcons.link,
-          name: "Other links")
+      Social(link: "www.github.com/purveshxd", name: "Github"),
+      Social(name: "Linkedin", link: "www.linkedin.com/in/purveshxd"),
+      Social(name: "Twitter/X", link: "www.twitter.com/xdpurvesh"),
+      Social(link: "www.linktr.ee/purveshxd", name: "Other links")
+    ];
+
+    List<IconData> iconsList = [
+      FontAwesomeIcons.github,
+      FontAwesomeIcons.linkedin,
+      FontAwesomeIcons.xTwitter,
+      FontAwesomeIcons.link,
     ];
 
     ValueNotifier isHovering = ValueNotifier(false);
@@ -47,7 +42,7 @@ class SocialComponent extends StatelessWidget {
                       message: socialList[i].name,
                       child: FocusableActionDetector(
                         child: Icon(
-                          socialList[i].icon,
+                          iconsList[i],
                           color: selectedIndex == i
                               ? isHovering.value
                                   ? Colors.white
