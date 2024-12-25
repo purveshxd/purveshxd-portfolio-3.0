@@ -13,9 +13,9 @@ class _BackgroundState extends State<Background> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F172A),
-      body: MouseRegion(
+    return Container(
+      color: const Color(0xFF0F172A),
+      child: MouseRegion(
         onHover: (event) {
           mousePointerLocation.value = event.localPosition;
         },

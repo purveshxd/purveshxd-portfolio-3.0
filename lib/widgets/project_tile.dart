@@ -120,6 +120,7 @@ class _ProjectTileState extends State<ProjectTile> {
                         ),
                       ],
                     ),
+                    const Spacer(),
                     const SizedBox(height: 12),
                     Flexible(
                       child: Wrap(

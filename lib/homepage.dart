@@ -18,73 +18,75 @@ class Homepage extends StatelessWidget {
       ItemPositionsListener.create();
   @override
   Widget build(BuildContext context) {
-    return Background(
-      childWidget: Center(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            RightSection(
-              itemPositionsListener: itemPositionsListener,
-              controller: itemScrollController,
-            ),
-            Expanded(
-              child: ScrollablePositionedList.builder(
-                // separatorBuilder: (context, index) => Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: const Divider(),
-                // ),
-                physics: const BouncingScrollPhysics(),
-                padding:
-                    const EdgeInsets.symmetric(vertical: 0).copyWith(right: 35),
-                itemCount: 4,
+    return Scaffold(
+      body: Background(
+        childWidget: Center(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              RightSection(
                 itemPositionsListener: itemPositionsListener,
-                itemScrollController: itemScrollController,
-                initialScrollIndex: 0,
-                itemBuilder: (context, index) {
-                  switch (index) {
-                    case 0:
-                      return const AboutComponent();
-                    case 1:
-                      return const ProjectsComponent();
-                    case 2:
-                      return const ExperienceComponent();
-                    case 3:
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const ResumeComponent(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              const Text("Made in "),
-                              GestureDetector(
-                                onDoubleTap: () {
-                                  log("Double tapped");
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const AdminLoginScreen(),
-                                      ));
-                                },
-                                child: const FlutterLogo(
-                                  style: FlutterLogoStyle.horizontal,
-                                  size: 50,
-                                ),
-                              ),
-                              const Text(" with love ❤️"),
-                            ],
-                          )
-                        ],
-                      );
-                    default:
-                      return const SizedBox();
-                  }
-                },
+                controller: itemScrollController,
               ),
-            )
-          ],
+              Expanded(
+                child: ScrollablePositionedList.builder(
+                  // separatorBuilder: (context, index) => Padding(
+                  //   padding: const EdgeInsets.all(8.0),
+                  //   child: const Divider(),
+                  // ),
+                  physics: const BouncingScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(vertical: 0)
+                      .copyWith(right: 35),
+                  itemCount: 4,
+                  itemPositionsListener: itemPositionsListener,
+                  itemScrollController: itemScrollController,
+                  initialScrollIndex: 0,
+                  itemBuilder: (context, index) {
+                    switch (index) {
+                      case 0:
+                        return const AboutComponent();
+                      case 1:
+                        return const ProjectsComponent();
+                      case 2:
+                        return const ExperienceComponent();
+                      case 3:
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const ResumeComponent(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text("Made in "),
+                                GestureDetector(
+                                  onDoubleTap: () {
+                                    log("Double tapped");
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const AdminLoginScreen(),
+                                        ));
+                                  },
+                                  child: const FlutterLogo(
+                                    style: FlutterLogoStyle.horizontal,
+                                    size: 50,
+                                  ),
+                                ),
+                                const Text(" with love ❤️"),
+                              ],
+                            )
+                          ],
+                        );
+                      default:
+                        return const SizedBox();
+                    }
+                  },
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

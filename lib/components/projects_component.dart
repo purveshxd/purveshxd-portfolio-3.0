@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:purveshxdev/main.dart';
+import 'package:purveshxdev/models/arguments_model.dart';
 import 'package:purveshxdev/models/user_model.dart';
-import 'package:purveshxdev/screens/all_project_screen.dart';
+import 'package:purveshxdev/utils/routes.dart';
 import 'package:purveshxdev/widgets/project_tile.dart';
 
 import '../widgets/section_heading_widget.dart';
@@ -29,11 +30,11 @@ class ProjectsComponent extends StatelessWidget {
         const SizedBox(height: 15),
         GestureDetector(
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const AllProjectScreen(),
-                ));
+            Navigator.pushNamed(context, RouteName.ALL_PROJECT,
+                arguments: ArgumentsModel(
+                    data: projectsList.sublist(
+                  4,
+                )));
           },
           child: FocusableActionDetector(
             onShowHoverHighlight: (value) {
