@@ -7,7 +7,6 @@ import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/firebase_options.dart';
 import 'package:purveshxdev/homepage.dart';
 import 'package:purveshxdev/providers/firebase_provider.dart';
-import 'package:purveshxdev/scripts/upload_scripts.dart';
 import 'package:purveshxdev/utils/routes.dart';
 
 PdfController? controller;
@@ -17,7 +16,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await firebaseProvider.getData();
-  await uploadUserData();
 
   try {
     controller = PdfController(
@@ -43,11 +41,15 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.indigo,
       ),
-      // home: ProjectEditScreen(),
+      // home: Homepage(),
       initialRoute: RouteName.HOMEPAGE,
       routes: Routes.webRoutes,
       onGenerateInitialRoutes: (initialRoute) {
-        return [MaterialPageRoute(builder: (context) => Homepage())];
+        return [
+          MaterialPageRoute(
+            builder: (context) => Homepage(),
+          ),
+        ];
       },
     );
   }

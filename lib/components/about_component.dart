@@ -7,6 +7,7 @@ class AboutComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Column(
+      // spacing: 10,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         SectionHeadingWidget(sectionHeadingLabel: "About"),
@@ -27,6 +28,10 @@ class AboutComponent extends StatelessWidget {
             ),
           ],
         ),
+        // Divider(
+        //   color: Colors.white10,
+        //   thickness: 2,
+        // ),
       ],
     );
   }

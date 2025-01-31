@@ -12,9 +12,12 @@ class ProjectsComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //
     List<Project> projectsList = firebaseProvider.getProjects();
     final projectLength = projectsList.length > 3 ? 3 : projectsList.length;
     ValueNotifier isHovering = ValueNotifier(false);
+    //
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -78,7 +81,8 @@ class ProjectsComponent extends StatelessWidget {
                   );
                 }),
           ),
-        )
+        ),
+        const SizedBox(height: 15)
       ],
     );
   }

@@ -1,8 +1,7 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:purveshxdev/models/user_model.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SocialComponent extends StatelessWidget {
   const SocialComponent({super.key});
@@ -35,8 +34,9 @@ class SocialComponent extends StatelessWidget {
                 valueListenable: isHovering,
                 builder: (context, value, child) {
                   return GestureDetector(
-                    onTap: () {
-                      log("Tapped");
+                    onTap: () async {
+                      final url = Uri.parse('https://${socialList[i].link}');
+                      await launchUrl(url, webOnlyWindowName: '_blank');
                     },
                     child: Tooltip(
                       message: socialList[i].name,

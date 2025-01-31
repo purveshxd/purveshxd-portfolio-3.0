@@ -13,7 +13,7 @@ class FirebaseProvider {
     try {
       var data = await db.doc('purveshdongarwar_firebase').get();
       var temp = data.data();
-      log(temp.toString());
+      // log(temp.toString());
       final userModelData = UserModel.fromMap(temp!);
       _userModel = userModelData;
     } catch (e) {
@@ -47,7 +47,12 @@ class FirebaseProvider {
     return projectData;
   }
 
-  uploadProject() async {
-    try {} catch (e) {}
+  List<Experience> getExperience() {
+    var experienceData = _userModel.experiences;
+    return experienceData;
   }
+
+  // uploadProject() async {
+  //   try {} catch (e) {}
+  // }
 }

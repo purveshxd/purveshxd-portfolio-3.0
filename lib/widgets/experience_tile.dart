@@ -1,11 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/models/user_model.dart';
 
 class ExperienceTile extends StatefulWidget {
+  final Experience experience;
   final int i;
   const ExperienceTile({
     super.key,
     required this.i,
+    required this.experience,
   });
 
   @override
@@ -14,8 +17,10 @@ class ExperienceTile extends StatefulWidget {
 
 class _ExperienceTileState extends State<ExperienceTile> {
   int? hoveringIndex;
+
   @override
   Widget build(BuildContext context) {
+    final description = widget.experience.desc.trim().split("_").sublist(1);
     return GestureDetector(
       child: FocusableActionDetector(
         onShowHoverHighlight: (value) {
@@ -44,44 +49,31 @@ class _ExperienceTileState extends State<ExperienceTile> {
             color:
                 hoveringIndex == widget.i ? Colors.white10 : Colors.transparent,
           ),
-          height: 200,
           child: Row(
+            spacing: 20,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // Flexible(
-              //   flex: 1,
-              //   child: Container(
-              //     clipBehavior: Clip.hardEdge,
-              //     decoration: const BoxDecoration(
-              //       borderRadius: BorderRadius.all(Radius.circular(8)),
-              //       image: DecorationImage(
-              //         fit: BoxFit.cover,
-              //         alignment: Alignment.topCenter,
-              //         image: NetworkImage(
-              //             "https://images.unsplash.com/photo-1490604001847-b712b0c2f967?q=80&w=1253&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              const Text(
-                "2021 - Present",
-                style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                    color: Colors.white54),
+              Flexible(
+                flex: 1,
+                child: Text(
+                  widget.experience.timeline,
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Colors.white54),
+                ),
               ),
-
-              const SizedBox(width: 30),
               Flexible(
                 flex: 3,
                 child: Column(
+                  spacing: 4,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
                         Text(
-                          "Experience here",
+                          widget.experience.companyName,
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
@@ -89,57 +81,48 @@ class _ExperienceTileState extends State<ExperienceTile> {
                                   ? Colors.tealAccent
                                   : Colors.white),
                         ),
-                        AnimatedRotation(
-                          duration: Durations.short4,
-                          curve: Curves.easeOut,
-                          turns: hoveringIndex == widget.i ? 0 : .5,
-                          child: Icon(
-                            Icons.arrow_outward_rounded,
-                            color: hoveringIndex == widget.i
-                                ? Colors.tealAccent
-                                : Colors.white,
-                          ),
-                        )
+                        // AnimatedRotation(
+                        //   duration: Durations.short4,
+                        //   curve: Curves.easeOut,
+                        //   turns: hoveringIndex == widget.i ? 0 : .5,
+                        //   child: Icon(
+                        //     Icons.arrow_outward_rounded,
+                        //     color: hoveringIndex == widget.i
+                        //         ? Colors.tealAccent
+                        //         : Colors.white,
+                        //   ),
+                        // )
                       ],
                     ),
-                    const Row(
+                    Text(
+                      widget.experience.title,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.white54),
+                    ),
+                    Row(
                       children: [
                         Flexible(
-                          child: Text(
-                            "Loosely designed in Figma and coded in Visual Studio Code by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel. All text is set in the Inter typeface.",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 14,
-                                color: Colors.white54),
-                          ),
+                          child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: List.generate(
+                                description.length,
+                                (index) {
+                                  return Text(
+                                    '•  ${description[index].trim()}',
+                                    // '✦ ${description[index].trim()}',
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 14,
+                                        color: Colors.white30),
+                                  );
+                                },
+                              )),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 12),
-                    Flexible(
-                      child: Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.start,
-                        runSpacing: 8,
-                        spacing: 4,
-                        children: [
-                          for (var i = 0; i < 5; i++)
-                            const Chip(
-                                padding: EdgeInsets.symmetric(horizontal: 2),
-                                shape: StadiumBorder(),
-                                elevation: 0,
-                                side: BorderSide.none,
-                                label: Text(
-                                  "Flutter",
-                                  style: TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.tealAccent,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                backgroundColor:
-                                    Color.fromARGB(113, 47, 112, 132))
-                        ],
-                      ),
-                    )
                   ],
                 ),
               )

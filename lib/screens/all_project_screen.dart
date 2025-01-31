@@ -19,6 +19,7 @@ class AllProjectScreen extends StatelessWidget {
       "Link"
     ];
     ValueNotifier isHovering = ValueNotifier(false);
+    ValueNotifier<int?> isHoveringIndex = ValueNotifier<int?>(null);
     // const int projectListLength = 8;
     // const int noOfColumns = 4;
     return Scaffold(
@@ -112,7 +113,13 @@ class AllProjectScreen extends StatelessWidget {
                             if (cellIndex == 0) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(projectList[rowIndex].name),
+                                child: Text(
+                                  projectList[rowIndex].name,
+                                  style: const TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),
+                                ),
                               );
                             } else if (cellIndex == 1) {
                               return Padding(
@@ -149,9 +156,51 @@ class AllProjectScreen extends StatelessWidget {
                                 ),
                               );
                             } else if (cellIndex == 3) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(projectList[rowIndex].githubLink),
+                              return FocusableActionDetector(
+                                onShowHoverHighlight: (value) {
+                                  if (value) {
+                                    isHoveringIndex.value = rowIndex;
+                                  } else {
+                                    isHoveringIndex.value = null;
+                                  }
+                                },
+                                child: ValueListenableBuilder(
+                                    valueListenable: isHoveringIndex,
+                                    builder: (context, value, child) {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Row(
+                                          children: [
+                                            Text(
+                                              projectList[rowIndex].githubLink,
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  // fontSize: 18,
+                                                  color:
+                                                      isHoveringIndex.value ==
+                                                              rowIndex
+                                                          ? Colors.tealAccent
+                                                          : Colors.white),
+                                            ),
+                                            AnimatedRotation(
+                                              duration: Durations.short4,
+                                              curve: Curves.easeOut,
+                                              turns: isHoveringIndex.value ==
+                                                      rowIndex
+                                                  ? 0
+                                                  : .5,
+                                              child: Icon(
+                                                Icons.arrow_outward_rounded,
+                                                color: isHoveringIndex.value ==
+                                                        rowIndex
+                                                    ? Colors.tealAccent
+                                                    : Colors.white,
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }),
                               );
                             } else {
                               return Padding(

@@ -69,9 +69,11 @@ class _ProjectTileState extends State<ProjectTile> {
                     image: DecorationImage(
                       fit: BoxFit.cover,
                       alignment: Alignment.topCenter,
-                      image: NetworkImage(widget.project.thumbnailLink.isEmpty
-                          ? "https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png"
-                          : widget.project.thumbnailLink),
+                      image: NetworkImage(
+                        widget.project.thumbnailLink.isEmpty
+                            ? "https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png"
+                            : widget.project.thumbnailLink,
+                      ),
                     ),
                   ),
                 ),
@@ -132,20 +134,22 @@ class _ProjectTileState extends State<ProjectTile> {
                               i < widget.project.techTag.length;
                               i++)
                             Chip(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 2),
-                                shape: const StadiumBorder(),
-                                elevation: 0,
-                                side: BorderSide.none,
-                                label: Text(
-                                  widget.project.techTag[i],
-                                  style: const TextStyle(
-                                      fontSize: 12,
-                                      color: Colors.tealAccent,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                backgroundColor:
-                                    const Color.fromARGB(113, 47, 112, 132))
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2),
+                              shape: const StadiumBorder(),
+                              elevation: 0,
+                              side: BorderSide.none,
+                              label: Text(
+                                widget.project.techTag[i][0].toUpperCase() +
+                                    widget.project.techTag[i].substring(1),
+                                style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.tealAccent,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                              backgroundColor:
+                                  const Color.fromARGB(113, 47, 112, 132),
+                            )
                         ],
                       ),
                     )

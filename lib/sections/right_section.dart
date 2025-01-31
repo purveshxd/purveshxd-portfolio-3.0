@@ -16,7 +16,12 @@ class RightSection extends StatefulWidget {
 }
 
 class _RightSectionState extends State<RightSection> {
-  List<String> sectionList = ["About", "Projects", "Experience", "Resume"];
+  List<String> sectionList = [
+    "About",
+    "Experience",
+    "Projects",
+    "Resume",
+  ];
 
   int selectedIndex = 0;
 
@@ -42,7 +47,7 @@ class _RightSectionState extends State<RightSection> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Purvesh dongarwar",
+              "Purvesh Dongarwar",
               style: Style.headingTextStyle,
             ),
             SizedBox(height: MediaQuery.sizeOf(context).width * .005),
@@ -52,7 +57,7 @@ class _RightSectionState extends State<RightSection> {
             ),
             SizedBox(height: MediaQuery.sizeOf(context).width * .01),
             const Text(
-              "I build accessible, pixel-perfect digital experiences for the web.",
+              "I build accessible, pixel-perfect digital experiences for the mobile & web.",
               style: TextStyle(color: Colors.white54, fontSize: 16),
             ),
             const Spacer(),
@@ -73,7 +78,7 @@ class _RightSectionState extends State<RightSection> {
                 sectionName: sectionList[i],
               ),
             const Spacer(),
-             SocialComponent(),
+            const SocialComponent(),
           ],
         ),
       ),
@@ -115,6 +120,7 @@ class ProfileButtons extends StatelessWidget {
                     padding: const EdgeInsets.all(10),
                     duration: Durations.medium4,
                     decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(100),
                         color: selectedIndex == index
                             ? Colors.white
                             : value
@@ -125,7 +131,7 @@ class ProfileButtons extends StatelessWidget {
                         : value
                             ? 80
                             : 30,
-                    height: 1,
+                    height: 4,
                   ),
                   AnimatedDefaultTextStyle(
                     curve: Curves.easeOutBack,

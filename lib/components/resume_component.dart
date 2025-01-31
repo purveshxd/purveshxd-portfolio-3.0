@@ -3,10 +3,17 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/main.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class ResumeComponent extends StatelessWidget {
+class ResumeComponent extends StatefulWidget {
   const ResumeComponent({super.key});
 
+  @override
+  State<ResumeComponent> createState() => _ResumeComponentState();
+}
+
+class _ResumeComponentState extends State<ResumeComponent> {
+  bool isHovering = false;
   // PdfController? controller;
   @override
   Widget build(BuildContext context) {
@@ -16,28 +23,66 @@ class ResumeComponent extends StatelessWidget {
       );
     }
 
-    return SizedBox(
-      height: MediaQuery.sizeOf(context).height,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 30, bottom: 30),
-        child: PdfView(
-          renderer: (PdfPage page) => page.render(
-            quality: 100,
-            width: MediaQuery.sizeOf(context).width * 2,
-            height: MediaQuery.sizeOf(context).height * 2,
-            format: PdfPageImageFormat.png,
-            forPrint: true,
-          ),
-          controller: controller!,
-          onDocumentLoaded: (document) {
-            log("PDF loaded with ${document.pagesCount} pages.");
-          },
+    return GestureDetector(
+      onTap: () => launchUrl(Uri.parse(
+          "https://drive.google.com/file/d/1PQMwKtVOhmG9H6LKqBBMRdG0D4EqsgAP/view")),
+      child: FocusableActionDetector(
+        onShowHoverHighlight: (value) {
+          setState(() {
+            isHovering = value;
+          });
+        },
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              height: MediaQuery.sizeOf(context).height,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 30, bottom: 30),
+                child: PdfView(
+                  renderer: (PdfPage page) => page.render(
+                    quality: 100,
+                    width: MediaQuery.sizeOf(context).width * 2,
+                    height: MediaQuery.sizeOf(context).height * 2,
+                    format: PdfPageImageFormat.png,
+                    forPrint: true,
+                  ),
+                  controller: controller!,
+                  onDocumentLoaded: (document) {
+                    log("PDF loaded with ${document.pagesCount} pages.");
+                  },
+                ),
+              ),
+            ),
+            AnimatedContainer(
+              duration: Durations.short4,
+              padding: const EdgeInsets.all(15),
+              curve: Curves.easeOut,
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                border: isHovering
+                    ? Border.all(
+                        color: Colors.black12,
+                        width: 2,
+                      )
+                    : null,
+                borderRadius: BorderRadius.circular(12),
+                color: isHovering ? Colors.black38 : Colors.transparent,
+              ),
+              child: Text(
+                "View",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: isHovering ? Colors.tealAccent : Colors.white),
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
-
 
 // class GetDocument {
 //   final url = Uri.parse(

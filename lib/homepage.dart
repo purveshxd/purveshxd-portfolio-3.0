@@ -47,9 +47,9 @@ class Homepage extends StatelessWidget {
                       case 0:
                         return const AboutComponent();
                       case 1:
-                        return const ProjectsComponent();
-                      case 2:
                         return const ExperienceComponent();
+                      case 2:
+                        return const ProjectsComponent();
                       case 3:
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
