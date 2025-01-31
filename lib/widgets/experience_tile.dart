@@ -20,6 +20,7 @@ class _ExperienceTileState extends State<ExperienceTile> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
     final description = widget.experience.desc.trim().split("_").sublist(1);
     return GestureDetector(
       child: FocusableActionDetector(
@@ -101,28 +102,30 @@ class _ExperienceTileState extends State<ExperienceTile> {
                           fontSize: 16,
                           color: Colors.white54),
                     ),
-                    Row(
-                      children: [
-                        Flexible(
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: List.generate(
-                                description.length,
-                                (index) {
-                                  return Text(
-                                    '•  ${description[index].trim()}',
-                                    // '✦ ${description[index].trim()}',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 14,
-                                        color: Colors.white30),
-                                  );
-                                },
-                              )),
-                        ),
-                      ],
-                    ),
+                    screenWidth > 768
+                        ? Row(
+                            children: [
+                              Flexible(
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: List.generate(
+                                      description.length,
+                                      (index) {
+                                        return Text(
+                                          '•  ${description[index].trim()}',
+                                          style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 14,
+                                              color: Colors.white30),
+                                        );
+                                      },
+                                    )),
+                              ),
+                            ],
+                          )
+                        : const SizedBox(),
                   ],
                 ),
               )

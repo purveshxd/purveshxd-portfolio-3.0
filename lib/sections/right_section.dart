@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:purveshxdev/components/profile_component.dart';
 import 'package:purveshxdev/components/social_component.dart';
 import 'package:purveshxdev/style/style.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -27,6 +28,7 @@ class _RightSectionState extends State<RightSection> {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
     // Listen to item positions
     widget.itemPositionsListener.itemPositions.addListener(() {
       final positions = widget.itemPositionsListener.itemPositions.value;
@@ -46,38 +48,27 @@ class _RightSectionState extends State<RightSection> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "Purvesh Dongarwar",
-              style: Style.headingTextStyle,
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).width * .005),
-            Text(
-              "Mobile App Developer",
-              style: Style.subHeadingTextStyle,
-            ),
-            SizedBox(height: MediaQuery.sizeOf(context).width * .01),
-            const Text(
-              "I build accessible, pixel-perfect digital experiences for the mobile & web.",
-              style: TextStyle(color: Colors.white54, fontSize: 16),
-            ),
-            const Spacer(),
+            const ProfileComponent(),
+            screenWidth > 768 ? const Spacer() : const SizedBox(),
             for (var i = 0; i < sectionList.length; i++)
-              ProfileButtons(
-                index: i,
-                onTap: () {
-                  setState(() {
-                    selectedIndex = i;
+              screenWidth > 768
+                  ? ProfileButtons(
+                      index: i,
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = i;
 
-                    widget.controller.scrollTo(
-                        index: selectedIndex,
-                        duration: Durations.medium3,
-                        curve: Curves.easeOut);
-                  });
-                },
-                selectedIndex: selectedIndex,
-                sectionName: sectionList[i],
-              ),
-            const Spacer(),
+                          widget.controller.scrollTo(
+                              index: selectedIndex,
+                              duration: Durations.medium3,
+                              curve: Curves.easeOut);
+                        });
+                      },
+                      selectedIndex: selectedIndex,
+                      sectionName: sectionList[i],
+                    )
+                  : const SizedBox(),
+            screenWidth > 768 ? const Spacer() : const SizedBox(),
             const SocialComponent(),
           ],
         ),

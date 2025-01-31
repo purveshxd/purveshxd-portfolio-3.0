@@ -8,6 +8,7 @@ class SocialComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.sizeOf(context).width > 768 ? true : false;
     List<Social> socialList = [
       Social(link: "www.github.com/purveshxd", name: "Github"),
       Social(name: "Linkedin", link: "www.linkedin.com/in/purveshxd"),
@@ -26,10 +27,13 @@ class SocialComponent extends StatelessWidget {
 
     int? selectedIndex;
     return Row(
+      mainAxisAlignment:
+          isMobile ? MainAxisAlignment.start : MainAxisAlignment.center,
       children: [
         for (var i = 0; i < socialList.length; i++)
           Padding(
-            padding: const EdgeInsets.all(18.0).copyWith(right: 0),
+            padding:
+                const EdgeInsets.all(18.0).copyWith(right: isMobile ? 0 : 18),
             child: ValueListenableBuilder(
                 valueListenable: isHovering,
                 builder: (context, value, child) {

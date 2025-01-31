@@ -55,33 +55,34 @@ class _ProjectTileState extends State<ProjectTile> {
             color:
                 hoveringIndex == widget.i ? Colors.white10 : Colors.transparent,
           ),
-          height: 200,
+          // height: 200,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              // Flexible(
+              //   fit: FlexFit.loose,
+              //   child: Container(
+              //     clipBehavior: Clip.hardEdge,
+              //     decoration: BoxDecoration(
+              //       borderRadius: const BorderRadius.all(Radius.circular(8)),
+              //       image: DecorationImage(
+              //         fit: BoxFit.cover,
+              //         alignment: Alignment.topCenter,
+              //         image: NetworkImage(
+              //           widget.project.thumbnailLink.isEmpty
+              //               ? "https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png"
+              //               : widget.project.thumbnailLink,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
               Flexible(
-                flex: 1,
-                child: Container(
-                  clipBehavior: Clip.hardEdge,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.all(Radius.circular(8)),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      alignment: Alignment.topCenter,
-                      image: NetworkImage(
-                        widget.project.thumbnailLink.isEmpty
-                            ? "https://raw.githubusercontent.com/purveshxd/KAIZEN-thehabitapp/refs/heads/main/media/homepage.png"
-                            : widget.project.thumbnailLink,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(width: 15),
-              Flexible(
-                flex: 3,
+                fit: FlexFit.tight,
                 child: Column(
+                  spacing: 8,
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -122,8 +123,8 @@ class _ProjectTileState extends State<ProjectTile> {
                         ),
                       ],
                     ),
-                    const Spacer(),
-                    const SizedBox(height: 12),
+                    // const Spacer(),
+                    // const SizedBox(height: 12),
                     Flexible(
                       child: Wrap(
                         crossAxisAlignment: WrapCrossAlignment.start,

@@ -12,6 +12,7 @@ import 'package:purveshxdev/utils/routes.dart';
 PdfController? controller;
 final firebaseProvider = FirebaseProvider();
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -41,7 +42,6 @@ class MyApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.indigo,
       ),
-      // home: Homepage(),
       initialRoute: RouteName.HOMEPAGE,
       routes: Routes.webRoutes,
       onGenerateInitialRoutes: (initialRoute) {

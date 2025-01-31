@@ -7,8 +7,12 @@ class SectionHeadingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.sizeOf(context).width;
     return Padding(
-      padding: const EdgeInsets.only(top: 55, bottom: 10),
+      padding: screenWidth > 768
+          ? const EdgeInsets.only(top: 55, bottom: 10)
+          : const EdgeInsets.all(15),
+      // padding: const EdgeInsets.only(top: 55, bottom: 10),
       child: Text(
         sectionHeadingLabel.toUpperCase(),
         style: Style.sectionHeadingTextStyle,
