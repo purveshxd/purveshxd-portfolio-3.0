@@ -101,6 +101,7 @@ class MouseFollowerPaint extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
+    // Draws the blur
     canvas.drawCircle(
       position,
       radius,
@@ -108,6 +109,23 @@ class MouseFollowerPaint extends CustomPainter {
         ..color = Colors.indigoAccent.shade700.withAlpha(255)
         ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 250),
     );
+
+    // Draws the border for the inner circle
+    canvas.drawCircle(
+      position,
+      22, // Slightly larger radius for the border
+      Paint()
+        ..color = Colors.white24 // Border color
+        ..style = PaintingStyle.stroke // Set style to stroke for the border
+        ..strokeWidth = 2, // Thickness of the border
+    );
+
+    // Draw the filled circle
+    // canvas.drawCircle(
+    //   position,
+    //   20,
+    //   Paint()..color = Colors.indigo,
+    // );
   }
 
   @override

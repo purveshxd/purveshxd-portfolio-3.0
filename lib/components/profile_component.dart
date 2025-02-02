@@ -8,7 +8,10 @@ class ProfileComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.sizeOf(context).width > 768 ? false : true;
     return Column(
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Text(
           "Purvesh Dongarwar",
@@ -20,9 +23,10 @@ class ProfileComponent extends StatelessWidget {
           style: Style.subHeadingTextStyle,
         ),
         SizedBox(height: MediaQuery.sizeOf(context).width * .01),
-        const Text(
+        Text(
           "I build accessible, pixel-perfect digital experiences for the mobile & web.",
-          style: TextStyle(color: Colors.white54, fontSize: 16),
+          textAlign: isMobile ? TextAlign.center : TextAlign.start,
+          style: const TextStyle(color: Colors.white54, fontSize: 16),
         ),
       ],
     );

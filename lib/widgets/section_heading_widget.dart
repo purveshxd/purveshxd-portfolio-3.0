@@ -11,7 +11,7 @@ class SectionHeadingWidget extends StatelessWidget {
     return Padding(
       padding: screenWidth > 768
           ? const EdgeInsets.only(top: 55, bottom: 10)
-          : const EdgeInsets.all(15),
+          : const EdgeInsets.all(15).copyWith(left: 0),
       // padding: const EdgeInsets.only(top: 55, bottom: 10),
       child: Text(
         sectionHeadingLabel.toUpperCase(),
