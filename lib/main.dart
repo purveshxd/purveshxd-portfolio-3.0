@@ -12,16 +12,18 @@ import 'package:purveshxdev/utils/routes.dart';
 PdfController? controller;
 final firebaseProvider = FirebaseProvider();
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await firebaseProvider.getData();
 
   try {
+    // controller = PdfController(
+    //   document: PdfDocument.openAsset("purveshxd-resume.pdf"),
+    // );
     controller = PdfController(
-      document: PdfDocument.openAsset("purveshxd-resume.pdf"),
-    );
+        document: PdfDocument.openFile(
+            "https://drive.google.com/file/d/1PQMwKtVOhmG9H6LKqBBMRdG0D4EqsgAP/view"));
   } catch (e) {
     log("Error loading PDF: $e");
   }
