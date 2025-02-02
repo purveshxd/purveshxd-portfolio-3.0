@@ -1,8 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:pdfx/pdfx.dart';
-import 'package:purveshxdev/main.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ResumeComponent extends StatefulWidget {
@@ -17,11 +13,11 @@ class _ResumeComponentState extends State<ResumeComponent> {
   // PdfController? controller;
   @override
   Widget build(BuildContext context) {
-    if (controller == null) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    }
+    // if (resumeImageData == null) {
+    //   return const Center(
+    //     child: CircularProgressIndicator(),
+    //   );
+    // }
 
     return GestureDetector(
       onTap: () => launchUrl(Uri.parse(
@@ -36,21 +32,12 @@ class _ResumeComponentState extends State<ResumeComponent> {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.sizeOf(context).height,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 30, bottom: 30),
-                child: PdfView(
-                  renderer: (PdfPage page) => page.render(
-                    quality: 100,
-                    width: MediaQuery.sizeOf(context).width * 2,
-                    height: MediaQuery.sizeOf(context).height * 2,
-                    format: PdfPageImageFormat.png,
-                    forPrint: true,
-                  ),
-                  controller: controller!,
-                  onDocumentLoaded: (document) {
-                    log("PDF loaded with ${document.pagesCount} pages.");
-                  },
+              height: MediaQuery.sizeOf(context).height / 1.25,
+              child: Container(
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(
+                          "assets/Purvesh-Dongarwar-Resume-Image.png")),
                 ),
               ),
             ),

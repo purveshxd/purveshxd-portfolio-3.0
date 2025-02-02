@@ -1,15 +1,13 @@
-import 'dart:developer';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pdfx/pdfx.dart';
 import 'package:purveshxdev/firebase_options.dart';
 import 'package:purveshxdev/homepage.dart';
 import 'package:purveshxdev/providers/firebase_provider.dart';
 import 'package:purveshxdev/utils/routes.dart';
 
-PdfController? controller;
+// PdfController? controller;
+// Uint8List? resumeImageData;
 final firebaseProvider = FirebaseProvider();
 
 void main() async {
@@ -17,16 +15,13 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await firebaseProvider.getData();
 
-  try {
-    // controller = PdfController(
-    //   document: PdfDocument.openAsset("purveshxd-resume.pdf"),
-    // );
-    controller = PdfController(
-        document: PdfDocument.openFile(
-            "https://drive.google.com/file/d/1PQMwKtVOhmG9H6LKqBBMRdG0D4EqsgAP/view"));
-  } catch (e) {
-    log("Error loading PDF: $e");
-  }
+  // try {
+  //   resumeImageData = File.fromUri(Uri.parse(
+  //           "https://drive.google.com/uc?export=view&id=1Ln5l2jiYtQBkUsaKUPJA-i-SXi-57hA6"))
+  //       .readAsBytesSync();
+  // } catch (e) {
+  //   log("Error loading Resume: $e");
+  // }
 
   runApp(const MyApp());
 }
