@@ -32,8 +32,10 @@ class _ResumeComponentState extends State<ResumeComponent> {
           alignment: Alignment.center,
           children: [
             SizedBox(
-              height: MediaQuery.sizeOf(context).height / 1.25,
+              height: MediaQuery.sizeOf(context).height,
               child: Container(
+                margin: EdgeInsets.symmetric(vertical: 30)
+                    .copyWith(right: 15, left: 15),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage(
