@@ -87,15 +87,20 @@ class _ProjectTileState extends State<ProjectTile> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          widget.project.name,
-                          style: TextStyle(
+                        Flexible(
+                          child: Text(
+                            widget.project.name,
+                            style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18,
                               color: hoveringIndex == widget.i
                                   ? Colors.tealAccent
-                                  : Colors.white),
+                                  : Colors.white,
+                            ),
+                          ),
                         ),
                         AnimatedRotation(
                           duration: Durations.short4,
