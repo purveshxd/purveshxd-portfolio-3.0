@@ -26,7 +26,7 @@ class AboutComponent extends StatelessWidget {
                   const TextSpan(
                     text:
                         '''I’m a Flutter Developer passionate about crafting pixel-perfect, accessible user interfaces that blend design with robust engineering. I specialize in mobile app development, UI/UX design, and state management, with experience building custom Android launchers, habit-tracking apps, and AI-powered projects like an EEG-based depression detection system. 
-Currently, I’m expanding my expertise in iOS Development (SwiftUI) while working with startups and contract-based projects. Outside of coding, I enjoy 3D design (Blender3D), hitting the gym, and experimenting with new tech. ''',
+Currently, I’m expanding my expertise in iOS Development (SwiftUI), while working with startups and contract-based projects. Outside of coding, I enjoy 3D design (Blender3D), hitting the gym, and experimenting with new tech. ''',
                   ),
                   TextSpan(
                     text: '🚀',

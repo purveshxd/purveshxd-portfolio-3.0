@@ -67,6 +67,7 @@ class Social {
 }
 
 class Project {
+  final int index;
   final String name;
   final String desc;
   final String githubLink;
@@ -75,6 +76,7 @@ class Project {
   final String deploymentLink;
 
   Project({
+    required this.index,
     required this.name,
     required this.desc,
     required this.githubLink,
@@ -85,6 +87,7 @@ class Project {
 
   factory Project.fromMap(Map<String, dynamic> map) {
     return Project(
+      index: map['index'],
       name: map['name'] ?? '',
       desc: map['desc'] ?? '',
       githubLink: map['github_link'] ?? '',
@@ -96,6 +99,7 @@ class Project {
 
   Map<String, dynamic> toMap() {
     return {
+      'index': index,
       'name': name,
       'desc': desc,
       'github_link': githubLink,
@@ -162,9 +166,12 @@ class UserModel {
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
       profile: Profile.fromMap(map['profile']),
-      socials: List<Social>.from(map['socials']?.map((x) => Social.fromMap(x)) ?? []),
-      projects: List<Project>.from(map['projects']?.map((x) => Project.fromMap(x)) ?? []),
-      experiences: List<Experience>.from(map['experience']?.map((x) => Experience.fromMap(x)) ?? []),
+      socials: List<Social>.from(
+          map['socials']?.map((x) => Social.fromMap(x)) ?? []),
+      projects: List<Project>.from(
+          map['projects']?.map((x) => Project.fromMap(x)) ?? []),
+      experiences: List<Experience>.from(
+          map['experience']?.map((x) => Experience.fromMap(x)) ?? []),
     );
   }
 

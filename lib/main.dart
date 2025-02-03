@@ -6,8 +6,6 @@ import 'package:purveshxdev/homepage.dart';
 import 'package:purveshxdev/providers/firebase_provider.dart';
 import 'package:purveshxdev/utils/routes.dart';
 
-// PdfController? controller;
-// Uint8List? resumeImageData;
 final firebaseProvider = FirebaseProvider();
 
 void main() async {
@@ -15,13 +13,6 @@ void main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await firebaseProvider.getData();
 
-  // try {
-  //   resumeImageData = File.fromUri(Uri.parse(
-  //           "https://drive.google.com/uc?export=view&id=1Ln5l2jiYtQBkUsaKUPJA-i-SXi-57hA6"))
-  //       .readAsBytesSync();
-  // } catch (e) {
-  //   log("Error loading Resume: $e");
-  // }
 
   runApp(const MyApp());
 }

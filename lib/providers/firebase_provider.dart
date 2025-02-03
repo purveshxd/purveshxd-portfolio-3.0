@@ -43,6 +43,11 @@ class FirebaseProvider {
 
   List<Project> getProjects() {
     var projectData = _userModel.projects;
+                                        
+    // sorting the projects acc. to index
+    projectData.sort(
+      (a, b) => a.index.compareTo(b.index),
+    );
 
     return projectData;
   }
