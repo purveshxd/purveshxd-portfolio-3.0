@@ -20,8 +20,9 @@ class _ResumeComponentState extends State<ResumeComponent> {
     // }
 
     return GestureDetector(
+      // https://drive.google.com/file/d/1Ln5l2jiYtQBkUsaKUPJA-i-SXi-57hA6/view?usp=drive_link
       onTap: () => launchUrl(Uri.parse(
-          "https://drive.google.com/file/d/1PQMwKtVOhmG9H6LKqBBMRdG0D4EqsgAP/view")),
+          "https://drive.google.com/file/d/1Ln5l2jiYtQBkUsaKUPJA-i-SXi-57hA6/view?usp=drive_link")),
       child: FocusableActionDetector(
         onShowHoverHighlight: (value) {
           setState(() {
