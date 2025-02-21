@@ -29,11 +29,13 @@ jobs:
         run: flutter pub get
 
       - name: Build Flutter Web (CanvasKit Renderer)
-        run: flutter build web --release --no-tree-shake-icons --base-href="/purveshxd-portfolio-3.0/"
+        run: flutter build web --release --no-tree-shake-icons --base-href="/"
+        # run: flutter build web --release --no-tree-shake-icons --base-href="/purveshxd-portfolio-3.0/"
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          repository-name: purveshxd/purveshxd.github.io # 🚀 Deploy to your root repo
           branch: gh-pages
           folder: build/web
           clean: true
