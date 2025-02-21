@@ -39,3 +39,4 @@ jobs:
           branch: gh-pages
           folder: build/web
           clean: true
+          token: ${{ secrets.GH_PAT }}
