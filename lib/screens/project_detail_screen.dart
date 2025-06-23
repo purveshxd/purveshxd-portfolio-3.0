@@ -32,6 +32,7 @@ class ProjectDetailScreen extends StatelessWidget {
           padding: const EdgeInsets.all(45.0),
           child: Center(
             child: SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
