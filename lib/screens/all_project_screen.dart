@@ -4,6 +4,7 @@ import 'package:purveshxdev/models/user_model.dart';
 import 'package:purveshxdev/style/style.dart';
 import 'package:purveshxdev/utils/background.dart';
 import 'package:purveshxdev/widgets/project_tile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AllProjectScreen extends StatelessWidget {
   const AllProjectScreen({super.key});
@@ -169,61 +170,71 @@ class AllProjectScreen extends StatelessWidget {
                                         ),
                                       );
                                     } else if (cellIndex == 3) {
-                                      return FocusableActionDetector(
-                                        onShowHoverHighlight: (value) {
-                                          if (value) {
-                                            isHoveringIndex.value = rowIndex;
-                                          } else {
-                                            isHoveringIndex.value = null;
-                                          }
+                                      return GestureDetector(
+                                        onTap: () async {
+                                          await launchUrl(Uri.parse(
+                                              projectList[rowIndex]
+                                                  .githubLink));
                                         },
-                                        child: ValueListenableBuilder(
-                                            valueListenable: isHoveringIndex,
-                                            builder: (context, value, child) {
-                                              return Padding(
-                                                padding:
-                                                    const EdgeInsets.all(8.0),
-                                                child: Row(
-                                                  children: [
-                                                    Flexible(
-                                                      child: Text(
-                                                        projectList[rowIndex]
-                                                            .githubLink,
-                                                        style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            // fontSize: 18,
-                                                            color: isHoveringIndex
-                                                                        .value ==
-                                                                    rowIndex
-                                                                ? Colors
-                                                                    .tealAccent
-                                                                : Colors.white),
+                                        child: FocusableActionDetector(
+                                          onShowHoverHighlight: (value) {
+                                            if (value) {
+                                              isHoveringIndex.value = rowIndex;
+                                            } else {
+                                              isHoveringIndex.value = null;
+                                            }
+                                          },
+                                          child: ValueListenableBuilder(
+                                              valueListenable: isHoveringIndex,
+                                              builder: (context, value, child) {
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: Row(
+                                                    children: [
+                                                      Flexible(
+                                                        child: Text(
+                                                          projectList[rowIndex]
+                                                              .githubLink,
+                                                          style: TextStyle(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              // fontSize: 18,
+                                                              color: isHoveringIndex
+                                                                          .value ==
+                                                                      rowIndex
+                                                                  ? Colors
+                                                                      .tealAccent
+                                                                  : Colors
+                                                                      .white),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    AnimatedRotation(
-                                                      duration:
-                                                          Durations.short4,
-                                                      curve: Curves.easeOut,
-                                                      turns: isHoveringIndex
-                                                                  .value ==
-                                                              rowIndex
-                                                          ? 0
-                                                          : .5,
-                                                      child: Icon(
-                                                        Icons
-                                                            .arrow_outward_rounded,
-                                                        color: isHoveringIndex
+                                                      AnimatedRotation(
+                                                        duration:
+                                                            Durations.short4,
+                                                        curve: Curves.easeOut,
+                                                        turns: isHoveringIndex
                                                                     .value ==
                                                                 rowIndex
-                                                            ? Colors.tealAccent
-                                                            : Colors.white,
-                                                      ),
-                                                    )
-                                                  ],
-                                                ),
-                                              );
-                                            }),
+                                                            ? 0
+                                                            : .5,
+                                                        child: Icon(
+                                                          Icons
+                                                              .arrow_outward_rounded,
+                                                          color: isHoveringIndex
+                                                                      .value ==
+                                                                  rowIndex
+                                                              ? Colors
+                                                                  .tealAccent
+                                                              : Colors.white,
+                                                        ),
+                                                      )
+                                                    ],
+                                                  ),
+                                                );
+                                              }),
+                                        ),
                                       );
                                     } else {
                                       return Padding(

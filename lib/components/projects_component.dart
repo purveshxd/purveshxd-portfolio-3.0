@@ -33,11 +33,15 @@ class ProjectsComponent extends StatelessWidget {
         const SizedBox(height: 15),
         GestureDetector(
           onTap: () {
-            Navigator.pushNamed(context, RouteName.ALL_PROJECT,
-                arguments: ArgumentsModel(
-                    data: projectsList.sublist(
-                  4,
-                )));
+            Navigator.pushNamed(
+              context,
+              RouteName.ALL_PROJECT,
+              arguments: ArgumentsModel(data: projectsList
+                  // data: projectsList.sublist(
+                  //   4,
+                  // ),
+                  ),
+            );
           },
           child: FocusableActionDetector(
             onShowHoverHighlight: (value) {

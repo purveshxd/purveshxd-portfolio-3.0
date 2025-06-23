@@ -50,6 +50,7 @@ class _ResumeComponentState extends State<ResumeComponent> {
               curve: Curves.easeOut,
               margin: const EdgeInsets.all(8),
               decoration: BoxDecoration(
+                
                 border: isHovering
                     ? Border.all(
                         color: Colors.black12,

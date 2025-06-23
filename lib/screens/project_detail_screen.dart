@@ -85,7 +85,7 @@ class ProjectDetailScreen extends StatelessWidget {
                             .getRepos(project.githubLink.split('/').last),
                         builder: (context, snapshot) {
                           if (snapshot.hasData) {
-                            return Markdown(
+                            return MarkdownBody(
                               imageBuilder: (uri, title, alt) {
                                 return Image.network(
                                   uri.toString(),
