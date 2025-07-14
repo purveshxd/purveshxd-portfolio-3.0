@@ -105,9 +105,11 @@ class AllProjectScreen extends StatelessWidget {
                                 columnName.length,
                                 (index) => Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: Text(columnName[index],
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.bold)),
+                                  child: Text(
+                                    columnName[index],
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.bold),
+                                  ),
                                 ),
                               )),
                               // Data Rows
