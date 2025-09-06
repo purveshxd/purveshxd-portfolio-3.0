@@ -19,7 +19,7 @@ class ProfileComponent extends StatelessWidget {
         ),
         SizedBox(height: MediaQuery.sizeOf(context).width * .005),
         Text(
-          "Mobile App Developer",
+          "Mobile App Developer | 3D Artist",
           style: Style.subHeadingTextStyle,
         ),
         SizedBox(height: MediaQuery.sizeOf(context).width * .01),
